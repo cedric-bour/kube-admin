@@ -14,15 +14,13 @@ spec:
 EOF
 )"
 
-
-listports=$(echo $3 | tr ";" "\n")
-for ports in $listports
+for ports in $3
 do
-IFS=', ' read -r -a port <<< "$ports"
+ports=($(echo $ports | tr ':' "\n"))
 script+="$(cat << EOF
-- name: "${port[0]}"
-    port: ${port[0]}
-    targetPort: ${port[1]}
+- name: "${ports[0]}"
+    port: ${ports[0]}
+    targetPort: ${ports[1]}
   
 EOF
 )"
