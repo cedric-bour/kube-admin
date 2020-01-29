@@ -38,9 +38,6 @@ fi
 if [ $2 == "jenkins" ]; then
 script+="$(cat << EOF
 
-        env:
-        - name: JAVA_OPTS
-          value: -Djenkins.install.runSetupWizard=false
         volumeMounts:
         - name: jenkins-home
           mountPath: /var/jenkins_home
