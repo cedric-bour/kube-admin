@@ -21,16 +21,32 @@ spec:
       containers:
       - name: $2
         image: localhost:5000/$2
-        
 EOF
 )"
 
 if [ $2 == "openvpn" ]; then
 script+="$(cat << EOF
-securityContext:
+
+        securityContext:
           capabilities:
             add:
               - NET_ADMIN
+EOF
+)"
+fi
+
+if [ $2 == "jenkins" ]; then
+script+="$(cat << EOF
+
+        env:
+        - name: JAVA_OPTS
+          value: -Djenkins.install.runSetupWizard=false
+        volumeMounts:
+        - name: jenkins-home
+          mountPath: /var/jenkins_home
+      volumes:
+      - name: jenkins-home
+        emptyDir: {}
 EOF
 )"
 fi
