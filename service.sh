@@ -38,7 +38,6 @@ fi
 script+="$(cat << EOF
 selector:
     app: $2
-    tier: $2
 EOF
 )"
 

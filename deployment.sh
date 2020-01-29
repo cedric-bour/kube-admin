@@ -12,13 +12,11 @@ spec:
   selector:
     matchLabels:
       app: $2
-      tier: $2
   replicas: $3
   template:
     metadata:
       labels:
         app: $2
-        tier: $2
     spec:
       containers:
       - name: $2
