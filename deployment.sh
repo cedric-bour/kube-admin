@@ -41,9 +41,14 @@ script+="$(cat << EOF
         volumeMounts:
         - name: jenkins-home
           mountPath: /var/jenkins_home
+        - name: dockersock
+          mountPath: "/var/run/docker.sock"
       volumes:
       - name: jenkins-home
         emptyDir: {}
+      - name: dockersock
+        hostPath:
+          path: /var/run/docker.sock
 EOF
 )"
 fi
