@@ -30,7 +30,6 @@ if [ $4 == "true" ]; then
 script+="$(cat << EOF
 externalIPs:
     - 91.121.82.115
-    - 2001:41d0:1:8773::1
   
 EOF
 )"
